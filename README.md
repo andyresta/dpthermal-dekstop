@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/banner.png" alt="DPThermal Banner" width="100%">
+  <img src="assets/banner_v2.png" alt="DPThermal Banner" width="100%">
 </div>
 
 # DPThermal
