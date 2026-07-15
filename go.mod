@@ -1,4 +1,4 @@
-module printbridge
+module dpthermal
 
 go 1.21
 

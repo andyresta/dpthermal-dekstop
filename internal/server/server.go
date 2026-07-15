@@ -1,4 +1,4 @@
-// Package server menyediakan HTTP handler dan router untuk PrintBridge.
+// Package server menyediakan HTTP handler dan router untuk DPThermal.
 // Semua endpoint API memakai net/http standard library, mengembalikan
 // JSON, dan menyertakan header CORS sehingga aplikasi web di origin
 // lain (port lain) dapat mengonsumsi service ini.
@@ -15,11 +15,11 @@ import (
 	"strings"
 	"time"
 
-	"printbridge/internal/config"
-	"printbridge/internal/helper"
-	"printbridge/internal/logger"
-	"printbridge/internal/printer"
-	"printbridge/internal/ui"
+	"dpthermal/internal/config"
+	"dpthermal/internal/helper"
+	"dpthermal/internal/logger"
+	"dpthermal/internal/printer"
+	"dpthermal/internal/ui"
 )
 
 // Server membungkus dependency yang dibutuhkan oleh seluruh handler.

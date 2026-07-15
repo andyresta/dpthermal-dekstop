@@ -1,5 +1,5 @@
 // Package helper menyediakan fungsi-fungsi utilitas umum yang digunakan
-// di seluruh aplikasi PrintBridge: pembuatan UUID, scan port,
+// di seluruh aplikasi DPThermal: pembuatan UUID, scan port,
 // pembukaan browser, serta pencarian direktori binary.
 package helper
 

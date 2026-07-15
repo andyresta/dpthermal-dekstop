@@ -1,4 +1,4 @@
-// PrintBridge — Service Bridge Printer
+// DPThermal — Service Bridge Printer
 //
 // Entry point yang melakukan:
 //  1. Memuat config.json dari direktori binary (atau membuat default)
@@ -21,15 +21,15 @@ import (
 	"syscall"
 	"time"
 
-	"printbridge/internal/config"
-	"printbridge/internal/helper"
-	"printbridge/internal/logger"
-	"printbridge/internal/printer"
-	"printbridge/internal/server"
+	"dpthermal/internal/config"
+	"dpthermal/internal/helper"
+	"dpthermal/internal/logger"
+	"dpthermal/internal/printer"
+	"dpthermal/internal/server"
 )
 
 const (
-	appName    = "PrintBridge"
+	appName    = "DPThermal"
 	appVersion = "v1.0.0"
 	portStart  = 8080
 	portEnd    = 9090

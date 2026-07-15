@@ -19,9 +19,9 @@ import (
 
 	"image"
 
-	"printbridge/internal/config"
-	"printbridge/internal/escpos"
-	"printbridge/internal/imageproc"
+	"dpthermal/internal/config"
+	"dpthermal/internal/escpos"
+	"dpthermal/internal/imageproc"
 )
 
 // Konstanta tipe printer untuk hasil deteksi.
@@ -1307,7 +1307,7 @@ func sendSpooler(ctx context.Context, info Info, payload []byte) error {
 	}
 
 	// Non-Windows: masih butuh file temp untuk lp/lpr.
-	tmp, err := os.CreateTemp("", "printbridge-*.bin")
+	tmp, err := os.CreateTemp("", "dpthermal-*.bin")
 	if err != nil {
 		return fmt.Errorf("gagal membuat file temp: %w", err)
 	}
@@ -1337,7 +1337,7 @@ func sendSpooler(ctx context.Context, info Info, payload []byte) error {
 // printer. Error dari jalur cepat (winspoolErr) disertakan pada pesan
 // akhir agar log /api/logs menampilkan konteks lengkap.
 func spoolWindowsFallback(ctx context.Context, printerName string, payload []byte, winspoolErr error) error {
-	tmp, err := os.CreateTemp("", "printbridge-*.bin")
+	tmp, err := os.CreateTemp("", "dpthermal-*.bin")
 	if err != nil {
 		return fmt.Errorf("winspool: %v ; gagal membuat file temp: %w", winspoolErr, err)
 	}

@@ -101,7 +101,7 @@ func rawPrintViaWinspool(ctx context.Context, printerName string, payload []byte
 	}
 	defer procClosePrinter.Call(uintptr(hPrinter))
 
-	docName, _ := syscall.UTF16PtrFromString("PrintBridge RAW")
+	docName, _ := syscall.UTF16PtrFromString("DPThermal RAW")
 	datatype, _ := syscall.UTF16PtrFromString("RAW")
 	di := docInfo1W{
 		DocName:    docName,

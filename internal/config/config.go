@@ -1,4 +1,4 @@
-// Package config menangani konfigurasi PrintBridge yang dibaca dan
+// Package config menangani konfigurasi DPThermal yang dibaca dan
 // disimpan dalam file config.json di direktori binary. Menyediakan
 // akses thread-safe ke konfigurasi melalui sync.RWMutex.
 package config
@@ -11,7 +11,7 @@ import (
 	"path/filepath"
 	"sync"
 
-	"printbridge/internal/helper"
+	"dpthermal/internal/helper"
 )
 
 // Nama file konfigurasi yang persisten di samping binary.

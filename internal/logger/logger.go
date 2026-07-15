@@ -1,5 +1,5 @@
 // Package logger menyediakan circular buffer in-memory yang thread-safe
-// untuk menyimpan riwayat job pencetakan PrintBridge. Tidak ada
+// untuk menyimpan riwayat job pencetakan DPThermal. Tidak ada
 // persistensi ke file/database; semua log akan hilang saat restart.
 package logger
 

@@ -1,18 +1,18 @@
-// Package ui menyimpan HTML single-page UI PrintBridge sebagai string
+// Package ui menyimpan HTML single-page UI DPThermal sebagai string
 // constant Go murni. Pendekatan ini sengaja dipakai (alih-alih
 // //go:embed file terpisah) agar binary final benar-benar self-contained
 // tanpa membutuhkan file pendamping ketika di-distribusikan.
 package ui
 
 // IndexHTML berisi seluruh markup HTML + CSS + JavaScript yang
-// digunakan untuk halaman utama PrintBridge. Tidak ada CDN eksternal;
+// digunakan untuk halaman utama DPThermal. Tidak ada CDN eksternal;
 // semua aset di-inline.
 const IndexHTML = `<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PrintBridge - Service Bridge Printer</title>
+<title>DPThermal - Service Bridge Printer</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
@@ -335,7 +335,7 @@ const IndexHTML = `<!DOCTYPE html>
 
 <div class="container">
   <header>
-    <h1><span class="dot"></span> PrintBridge <span class="ver">v1.0.0</span></h1>
+    <h1><span class="dot"></span> DPThermal <span class="ver">v1.0.0</span></h1>
     <div class="status-pill" id="serverStatus">terhubung</div>
   </header>
 
@@ -590,9 +590,9 @@ const IndexHTML = `<!DOCTYPE html>
   <!-- ============ TAB: DOKUMENTASI API ============ -->
   <section class="panel" id="panel-docs">
     <div class="card">
-      <h2>Dokumentasi API PrintBridge</h2>
+      <h2>Dokumentasi API DPThermal</h2>
       <p class="doc-intro">
-        Spesifikasi teknis untuk integrasi website/aplikasi dengan service PrintBridge.
+        Spesifikasi teknis untuk integrasi website/aplikasi dengan service DPThermal.
         Base URL: <code id="docBaseUrl">http://localhost:8080</code> (port mengikuti konfigurasi service).
         Semua endpoint print menggunakan method <strong>POST</strong> dengan header <code>Content-Type: application/json</code>.
         CORS diaktifkan (<code>Access-Control-Allow-Origin: *</code>).
@@ -742,7 +742,7 @@ const IndexHTML = `<!DOCTYPE html>
       <div class="doc-section">
         <h3>Contoh Implementasi JavaScript</h3>
         <div class="doc-pre">/**
- * Cetak receipt terstruktur ke PrintBridge.
+ * Cetak receipt terstruktur ke DPThermal.
  * @param {string} baseUrl - mis. 'http://localhost:8080'
  * @param {Array} items - array item receipt
  */
@@ -828,7 +828,7 @@ function showToast(msg, kind) {
 }
 
 // Konvensi proyek: SEMUA call API/AJAX menggunakan method POST.
-// Server PrintBridge sudah disiapkan untuk menerima POST sebagai alias
+// Server DPThermal sudah disiapkan untuk menerima POST sebagai alias
 // dari GET/PUT pada endpoint yang relevan. Untuk endpoint /api/config:
 //   - POST tanpa body  → read (sama seperti GET)
 //   - POST dengan body → update (sama seperti PUT)
