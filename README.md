@@ -1,6 +1,6 @@
 # DPThermal
 
-DPThermal (sebelumnya PrintBridge) adalah service HTTP lokal ringan yang bertindak sebagai jembatan (bridge) antara aplikasi web dan printer kasir (Thermal atau Dot Matrix) yang terpasang di komputer (Windows/Linux) via Spooler (USB/LAN) atau Bluetooth.
+DPThermal adalah service HTTP lokal ringan yang bertindak sebagai jembatan (bridge) antara aplikasi web dan printer kasir (Thermal atau Dot Matrix) yang terpasang di komputer (Windows/Linux) via Spooler (USB/LAN) atau Bluetooth.
 
 Aplikasi web Anda cukup mengirim request HTTP POST (JSON) ke DPThermal, lalu DPThermal akan mengubahnya menjadi perintah ESC/POS atau plain text, dan meneruskannya ke printer.
 
