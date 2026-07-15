@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="assets/banner.png" alt="DPThermal Banner" width="100%">
+</div>
+
 # DPThermal
 
 DPThermal adalah service HTTP lokal ringan yang bertindak sebagai jembatan (bridge) antara aplikasi web dan printer kasir (Thermal atau Dot Matrix) yang terpasang di komputer (Windows/Linux) via Spooler (USB/LAN) atau Bluetooth.
