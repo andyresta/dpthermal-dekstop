@@ -19,7 +19,10 @@ Your web application simply sends an HTTP POST request (JSON) to DPThermal, and 
 ## Usage (Installation & Running)
 
 ### 1. Download Executable
-Please download the DPThermal binary (executable) file suitable for your OS:
+Please download the DPThermal binary (executable) file suitable for your OS from the link below:
+
+**[Download DPThermal V1.0 Portable](https://github.com/andyresta/dpthermal-dekstop/releases/tag/V1.0)**
+
 - **Windows 64-bit**: `dpthermal-windows-amd64.exe`
 - **Windows 32-bit**: `dpthermal-windows-386.exe`
 - **Linux 64-bit**: `dpthermal-linux-amd64`
