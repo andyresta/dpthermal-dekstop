@@ -4,66 +4,66 @@
 
 # DPThermal
 
-DPThermal adalah service HTTP lokal ringan yang bertindak sebagai jembatan (bridge) antara aplikasi web dan printer kasir (Thermal atau Dot Matrix) yang terpasang di komputer (Windows/Linux) via Spooler (USB/LAN) atau Bluetooth.
+DPThermal is a lightweight local HTTP service that acts as a bridge between web applications and receipt printers (Thermal or Dot Matrix) installed on your computer (Windows/Linux) via Spooler (USB/LAN) or Bluetooth.
 
-Aplikasi web Anda cukup mengirim request HTTP POST (JSON) ke DPThermal, lalu DPThermal akan mengubahnya menjadi perintah ESC/POS atau plain text, dan meneruskannya ke printer.
+Your web application simply sends an HTTP POST request (JSON) to DPThermal, and DPThermal will convert it into ESC/POS commands or plain text, forwarding it to the printer.
 
-## Fitur Utama
+## Key Features
 
-- **Cetak Receipt Terstruktur**: Mengirim daftar item (teks, garis, barcode/QR, gambar) dengan dukungan format yang kompatibel dengan MaxThermal Android.
-- **Cetak Teks & Gambar (ESC/POS)**: Mendukung alignment, ukuran font, style (bold/underline), dan cetak gambar (dithering).
-- **Dot Matrix / Plain Text**: Mode fallback untuk printer non-thermal (seperti EPSON LX-310).
-- **Auto-Detect Printer**: Mendeteksi printer yang terpasang di OS (Spooler) dan Bluetooth (RFCOMM).
-- **Web UI**: Dilengkapi dengan dashboard web lokal untuk testing, melihat log, dan dokumentasi API.
+- **Structured Receipt Printing**: Send a list of items (text, lines, barcodes/QR, images) with format support compatible with MaxThermal Android.
+- **Text & Image Printing (ESC/POS)**: Supports alignment, font size, styling (bold/underline), and image printing (with dithering).
+- **Dot Matrix / Plain Text**: Fallback mode for non-thermal printers (such as EPSON LX-310).
+- **Auto-Detect Printers**: Automatically detects printers installed in the OS (Spooler) and Bluetooth (RFCOMM).
+- **Web UI**: Equipped with a local web dashboard for testing, viewing logs, and API documentation.
 
-## Cara Penggunaan (Instalasi & Menjalankan)
+## Usage (Installation & Running)
 
 ### 1. Download Executable
-Silakan download file _binary_ (executable) DPThermal yang sesuai dengan OS Anda:
+Please download the DPThermal binary (executable) file suitable for your OS:
 - **Windows 64-bit**: `dpthermal-windows-amd64.exe`
 - **Windows 32-bit**: `dpthermal-windows-386.exe`
 - **Linux 64-bit**: `dpthermal-linux-amd64`
-- **Linux ARM (Raspberry Pi, dll)**: `dpthermal-linux-arm` atau `dpthermal-linux-arm64`
+- **Linux ARM (Raspberry Pi, etc.)**: `dpthermal-linux-arm` or `dpthermal-linux-arm64`
 
-### 2. Menjalankan Aplikasi
-- **Windows**: Cukup klik dua kali (double-click) file `.exe` yang sudah di-download.
-- **Linux**: Berikan izin eksekusi (*executable permission*) terlebih dahulu melalui terminal, lalu jalankan aplikasinya:
+### 2. Running the Application
+- **Windows**: Simply double-click the downloaded `.exe` file.
+- **Linux**: Grant executable permission first via the terminal, then run the application:
   ```bash
   chmod +x dpthermal-linux-amd64
   ./dpthermal-linux-amd64
   ```
 
-Setelah dijalankan, service akan secara otomatis berjalan di background dan membuka dashboard pengaturan DPThermal di browser default Anda pada URL: `http://localhost:8080`.
+Once executed, the service will automatically run in the background and open the DPThermal settings dashboard in your default browser at the URL: `http://localhost:8080`.
 
-### 3. Konfigurasi Printer
-   Buka UI (`http://localhost:8080`), masuk ke tab **Pengaturan**.
-   Pilih printer aktif Anda, pilih **Mode Printer** (Thermal atau Dot Matrix), dan **Lebar Kertas** (58mm atau 80mm).
-   Klik **Simpan Pengaturan**.
+### 3. Printer Configuration
+   Open the UI (`http://localhost:8080`) and go to the **Settings** tab.
+   Select your active printer, choose the **Printer Mode** (Thermal or Dot Matrix), and **Paper Width** (58mm or 80mm).
+   Click **Save Settings**.
 
-## Integrasi API (Khusus Receipt)
+## API Integration (Receipt Specific)
 
-DPThermal mendukung endpoint khusus `/api/print/receipt` (alias: `/print/receipt`) untuk mencetak receipt terstruktur. Endpoint ini sangat berguna untuk mencetak nota penjualan dengan layout yang rapi.
+DPThermal supports a specific endpoint `/api/print/receipt` (alias: `/print/receipt`) for printing structured receipts. This endpoint is highly useful for printing sales invoices with a neat layout.
 
 **Endpoint:** `POST http://localhost:8080/api/print/receipt`
 **Content-Type:** `application/json`
 
-### Format Payload
+### Payload Format
 
-Payload menggunakan array `items` yang berisi urutan perintah cetak. Berikut contoh payload JSON:
+The payload uses an `items` array containing a sequence of print commands. Here is an example JSON payload:
 
 ```json
 {
   "items": [
-    { "type": "text", "align": "center", "size": 2, "style": "bold", "data": "NAMA TOKO" },
-    { "type": "text", "align": "center", "data": "Jl. Contoh No. 123" },
+    { "type": "text", "align": "center", "size": 2, "style": "bold", "data": "STORE NAME" },
+    { "type": "text", "align": "center", "data": "123 Example Street" },
     { "type": "line", "style": "double" },
-    { "type": "text", "data": "Nasi Goreng      x2   30.000" },
-    { "type": "text", "data": "Es Teh           x2   10.000" },
+    { "type": "text", "data": "Fried Rice       x2   30.000" },
+    { "type": "text", "data": "Iced Tea         x2   10.000" },
     { "type": "line" },
     { "type": "text", "align": "right", "size": 2, "style": "bold", "data": "TOTAL: Rp 40.000" },
     { "type": "feed", "data": "1" },
-    { "type": "qr", "align": "center", "size": 200, "data": "https://toko.example.com/inv/12345" },
-    { "type": "text", "align": "center", "style": "bold", "data": "Terima kasih!" },
+    { "type": "qr", "align": "center", "size": 200, "data": "https://store.example.com/inv/12345" },
+    { "type": "text", "align": "center", "style": "bold", "data": "Thank you!" },
     { "type": "feed", "data": "3" }
   ],
   "cut_paper": true,
@@ -72,30 +72,30 @@ Payload menggunakan array `items` yang berisi urutan perintah cetak. Berikut con
 }
 ```
 
-### Penjelasan Tipe Item (`type`)
+### Item Types Explanation (`type`)
 
-- **`text`**: Mencetak baris teks.
+- **`text`**: Prints a line of text.
   - `align`: `left` | `center` | `right` (default: `left`)
-  - `size`: `1` - `8` (ukuran karakter font, default: `1`)
+  - `size`: `1` - `8` (font character size, default: `1`)
   - `style`: `bold` | `underline` | `bold,underline`
-  - `data`: Teks yang akan dicetak.
-- **`line`**: Mencetak garis pemisah horizontal.
+  - `data`: The text to be printed.
+- **`line`**: Prints a horizontal separator line.
   - `style`: `single` (`-`) | `double` (`=`) | `dotted` (`.`)
-- **`qr`**: Generate & cetak QR Code.
+- **`qr`**: Generates & prints a QR Code.
   - `align`: `left` | `center` | `right` (default: `center`)
-  - `size`: Resolusi QR dalam px (default: `200`)
-  - `data`: Konten/URL QR Code.
-- **`image`**: Cetak gambar (hanya mode Thermal).
+  - `size`: QR generation resolution in px (default: `200`)
+  - `data`: QR Code content/URL.
+- **`image`**: Prints an image (Thermal mode only).
   - `align`: `left` | `center` | `right` (default: `center`)
-  - `data`: Base64 string dari gambar PNG/JPEG (misal: `data:image/png;base64,...`).
-- **`feed`**: Menambahkan baris kosong (feed kertas).
-  - `data`: Jumlah baris (misal: `"3"`).
+  - `data`: Base64 string of a PNG/JPEG image (e.g., `data:image/png;base64,...`).
+- **`feed`**: Adds blank lines (paper feed).
+  - `data`: Number of lines (e.g., `"3"`).
 
-*Catatan: Pada mode **Dot Matrix**, item tipe `qr` dan `image` tidak akan dicetak karena tidak didukung oleh printer.*
+*Note: In **Dot Matrix** mode, items of type `qr` and `image` will not be printed as they are not supported by the printer.*
 
-### Contoh Kode Integrasi (JavaScript/Frontend)
+### JavaScript/Frontend Integration Example
 
-Anda dapat menggunakan fungsi `fetch` di JavaScript aplikasi web Anda untuk mengirim perintah cetak langsung ke DPThermal lokal:
+You can use the `fetch` function in your web application's JavaScript to send print commands directly to the local DPThermal service:
 
 ```javascript
 async function printReceipt(items) {
@@ -111,14 +111,14 @@ async function printReceipt(items) {
     
     const data = await res.json();
     if (data.success) {
-      console.log("Cetak berhasil! Job ID:", data.job_id);
+      console.log("Print successful! Job ID:", data.job_id);
     } else {
-      console.error("Gagal mencetak:", data.message);
+      console.error("Print failed:", data.message);
     }
   } catch (err) {
-    console.error("Service DPThermal tidak terdeteksi atau mati.", err);
+    console.error("DPThermal service not detected or offline.", err);
   }
 }
 ```
 
-Untuk detail dokumentasi API (Cetak Teks / Cetak Gambar terpisah), Anda dapat membuka dashboard DPThermal di browser dan menuju tab **Dokumentasi API**.
+For detailed API documentation (Separate Text / Image Printing), you can open the DPThermal dashboard in your browser and navigate to the **API Documentation** tab.
