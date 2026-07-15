@@ -1,0 +1,6 @@
+{
+  "default_printer": "PrinterCMDEPSON_POS-80CLSPRINTER",
+  "default_paper_width_mm": 80,
+  "printer_type": "spooler",
+  "printer_mode": "thermal"
+}
